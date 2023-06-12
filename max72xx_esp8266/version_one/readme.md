@@ -41,6 +41,38 @@ The code also contains a heartbeat function that toggles a GPIO pin (D2) on and 
 
 The `DEBUG` constant can be set to 1 to enable debugging messages to the serial console. The `PRINT_CALLBACK` constant can also be set to 1 to print messages related to the callback function to the serial console.
 
+## Flowchart 
+
+```mermaid
+graph LR
+
+subgraph Initialization
+  A[Setup Serial] --> B[Initialize Display]
+  C[Set Shift Data In Callback]
+  D[Set Shift Data Out Callback]
+  A --> C
+  A --> D
+end
+
+subgraph WiFi Connection
+  E[Connect to WiFi]
+  F[Start Server]
+  G[Set IP Address as Message]
+  E --> F
+  F --> G
+end
+
+subgraph Main Loop
+  H[Handle WiFi Requests]
+  I[Scroll Text]
+  H --> I
+  I --> H
+end
+
+B --> E
+G --> H
+```
+
 ## Credits
 The code is based on the Parola_ESP8266_WiFi_Scrolling example included with the MD_MAX72xx library.
 

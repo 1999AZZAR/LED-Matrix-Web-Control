@@ -1,13 +1,29 @@
-## LED Matrix Web Control using NodeMcu ESP8266
-This code provides the functionality of controlling an LED matrix via a webserver using a NodeMcu ESP8266. The matrix driver used here is the LEDMatrixDriver.hpp, and the matrix is a 15x7 matrix consisting of 2 segments.
+# Version Two
 
-To use this code, you need to input your Wifi name and password in the variables ssid and password, respectively. The TCP server at port 80 will respond to HTTP requests, and the code uses the WiFiClient.h library for connecting the ESP8266 to the Wifi network.
+This project provides a code implementation for controlling an LED matrix using a web server. The code is specifically designed for the NodeMcu ESP8266 board. The LED matrix is driven by the LEDMatrixDriver library, and the communication with the web server is facilitated by the ESP8266WiFi library.
 
-The LEDMatrixDriver class instance lmd is defined to control the LED matrix, and a block font 8x8 is created to display characters on the matrix.
+## Prerequisites
+- NodeMcu ESP8266 board
+- LED Matrix (compatible with LEDMatrixDriver library)
+- WiFi network credentials (SSID and password)
 
-The code is set up to control the matrix via a webserver, allowing users to control the display by accessing the IP address of the NodeMcu on their local network. The server is set up to respond to HTTP GET requests for the root path ('/'), returning an HTML page with a form allowing users to input text to display on the matrix.
+## Hardware Setup
+1. Connect the LED matrix to the NodeMcu ESP8266 board.
+2. Make sure the LED matrix is compatible with the LEDMatrixDriver library and connected to the appropriate pins (e.g., CS pin).
 
-Users can input their text in the form, and the server will respond to the form submission with an HTTP POST request, displaying the text on the LED matrix.
+## Software Setup
+1. Install the LEDMatrixDriver library and the ESP8266WiFi library.
+2. Open the code in an Arduino-compatible IDE (e.g., Arduino IDE).
+3. Update the following variables in the code:
+   - `ssid`: Set this to your WiFi network SSID (name).
+   - `password`: Set this to your WiFi network password.
+
+## Usage
+1. Upload the code to the NodeMcu ESP8266 board.
+2. Open the serial monitor to view the IP address assigned to the board.
+3. Connect your computer or mobile device to the same WiFi network.
+4. Open a web browser and enter the IP address displayed in the serial monitor.
+5. The web page will allow you to control the LED matrix by sending text messages to display.
 
 ## Flowchart 
 
@@ -28,3 +44,14 @@ K --> L[Display message on LED Matrix]
 L --> M[Close client connection]
 M --> F
 ```
+
+## Customization
+- LED Matrix Dimensions: Adjust the `LEDMATRIX_WIDTH`, `LEDMATRIX_HEIGHT`, and `LEDMATRIX_SEGMENTS` variables according to your LED matrix configuration.
+- Font: Customize the `font` array to define the desired characters or symbols to display on the LED matrix.
+
+## Libraries Used
+- LEDMatrixDriver: A library for controlling LED matrices.
+- ESP8266WiFi: A library for connecting ESP8266 boards to WiFi networks.
+
+## Acknowledgements
+- LEDMatrixDriver library: Developed by [Bill Earl](https://github.com/bitbank2/LEDMatrixDriver).
